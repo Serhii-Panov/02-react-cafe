@@ -11,7 +11,13 @@ function App() {
     neutral: 0,
     bad: 0,
   };
+
   const [votes, setVotes] = useState<Votes>(initialState);
+  let totalVotes = votes.good + votes.neutral + votes.bad;
+  let positiveRate = totalVotes
+    ? Math.round((votes.good / totalVotes) * 100)
+    : 0;
+
   const handleVoteType = (type: VoteType) => {
     setVotes((votes) => ({
       ...votes,
@@ -25,7 +31,11 @@ function App() {
     <div className={css.app}>
       <CafeInfo />
       <VoteOptions onVote={handleVoteType} onReset={resetVotes} canReset />
-      <VoteStats votes={votes} totalVotes={0} positiveRate={0} />
+      <VoteStats
+        votes={votes}
+        totalVotes={totalVotes}
+        positiveRate={positiveRate}
+      />
     </div>
   );
 }
