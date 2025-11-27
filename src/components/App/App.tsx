@@ -4,6 +4,7 @@ import { useState } from "react";
 import type Votes from "../../types/votes.ts";
 import type { VoteType } from "../../types/votes.ts";
 import VoteOptions from "../VoteOptions/VoteOptions.tsx";
+import VoteStats from "../VoteStats/VoteStats.tsx";
 function App() {
   const initialState: Votes = {
     good: 0,
@@ -24,6 +25,7 @@ function App() {
     <div className={css.app}>
       <CafeInfo />
       <VoteOptions onVote={handleVoteType} onReset={resetVotes} canReset />
+      <VoteStats votes={votes} totalVotes={0} positiveRate={0} />
     </div>
   );
 }
