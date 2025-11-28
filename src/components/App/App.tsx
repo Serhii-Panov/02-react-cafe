@@ -5,6 +5,8 @@ import type { VoteType, Votes } from "../../types/votes.ts";
 import VoteOptions from "../VoteOptions/VoteOptions.tsx";
 import VoteStats from "../VoteStats/VoteStats.tsx";
 import Notification from "../Notification/Notification.tsx";
+import Form from "../Form/Form.tsx";
+import OrderForm from "../OrderForm/OrderForm.tsx";
 function App() {
   const initialState: Votes = {
     good: 0,
@@ -27,6 +29,9 @@ function App() {
   const resetVotes = () => {
     setVotes(initialState);
   };
+  const handleOrder = (data:string) => {
+    console.log("Order received from: ", data);
+  }
   return (
     <div className={css.app}>
       <CafeInfo />
@@ -44,6 +49,9 @@ function App() {
       ) : (
         <Notification />
       )}
+      <Form />
+      <h1>Place your order</h1>
+      <OrderForm onSubmit={handleOrder} />
     </div>
   );
 }
